@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import Navbar from "../../components/Navbar";
+import Navbar from "../../../components/Navbar";
 
 const EditBlog = ({ params }) => {
   const blogId = params.id;
