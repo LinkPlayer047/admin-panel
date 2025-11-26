@@ -11,13 +11,11 @@ const LoginPage = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/login`, {
+      const res = await fetch("http://localhost:5000/api/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, password }),
-        credentials: "include",
+        body: JSON.stringify({ username: email, password }),
       });
-
       const data = await res.json();
       if (res.ok) {
         localStorage.setItem("adminToken", data.token);
@@ -48,7 +46,7 @@ const LoginPage = () => {
             <label className="block text-white font-medium mb-1">Email</label>
             <input
               type="email"
-              placeholder="admin@example.com"
+              placeholder="Enter your email"
               className="w-full border text-white border-gray-300 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
@@ -57,12 +55,10 @@ const LoginPage = () => {
           </div>
 
           <div>
-            <label className="block text-white font-medium mb-1">
-              Password
-            </label>
+            <label className="block text-white font-medium mb-1">Password</label>
             <input
               type="password"
-              placeholder="admin123"
+              placeholder="Enter your password"
               className="w-full border text-white border-gray-300 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
