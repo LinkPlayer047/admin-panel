@@ -46,7 +46,7 @@ const LoginPage = () => {
             <label className="block text-white font-medium mb-1">Email</label>
             <input
               type="email"
-              placeholder="Enter your email"
+              placeholder="admin@example.com"
               className="w-full border text-white border-gray-300 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
@@ -58,7 +58,7 @@ const LoginPage = () => {
             <label className="block text-white font-medium mb-1">Password</label>
             <input
               type="password"
-              placeholder="Enter your password"
+              placeholder="admin123"
               className="w-full border text-white border-gray-300 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
