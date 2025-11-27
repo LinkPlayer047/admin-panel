@@ -39,7 +39,6 @@ const Navbar = ({ children }) => {
         }`}
       >
         <div className="flex justify-between items-center p-5 font-bold text-xl border-b border-gray-700">
-          <span>Admin Panel</span>
           <button
             className="md:hidden text-white text-xl"
             onClick={() => setSidebarOpen(false)}

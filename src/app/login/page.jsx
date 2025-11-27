@@ -1,6 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 const LoginPage = () => {
   const router = useRouter();
@@ -10,13 +11,17 @@ const LoginPage = () => {
 
   const handleLogin = async (e) => {
     e.preventDefault();
+    setError("");
+
     try {
       const res = await fetch("http://localhost:5000/api/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ username: email, password }),
+        body: JSON.stringify({ email, password }),
       });
+
       const data = await res.json();
+
       if (res.ok) {
         localStorage.setItem("adminToken", data.token);
         router.push("/dashboard");
@@ -31,14 +36,10 @@ const LoginPage = () => {
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-900 px-4">
       <div className="shadow-white shadow bg-gradient-to-br from-gray-600 to-black rounded-2xl p-10 max-w-md w-full">
-        <h2 className="text-3xl font-bold text-center text-white mb-6">
-          Admin Login
-        </h2>
+        <h2 className="text-3xl font-bold text-center text-white mb-6">Log in</h2>
 
         {error && (
-          <p className="bg-red-100 text-red-700 p-2 rounded mb-4 text-center">
-            {error}
-          </p>
+          <p className="bg-red-100 text-red-700 p-2 rounded mb-4 text-center">{error}</p>
         )}
 
         <form onSubmit={handleLogin} className="flex flex-col gap-4">
@@ -75,7 +76,8 @@ const LoginPage = () => {
         </form>
 
         <p className="mt-6 text-center text-gray-500 text-sm">
-          &copy; {new Date().getFullYear()} Admin Panel. All rights reserved.
+          &copy; {new Date().getFullYear()} Don't have an account?{" "}
+          <Link href="/signup" className="text-blue-500 hover:underline">Create an account</Link>
         </p>
       </div>
     </div>
