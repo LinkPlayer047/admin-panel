@@ -14,6 +14,8 @@ const SignupPage = () => {
   const [verifiedOtp, setVerifiedOtp] = useState(false);
   const [message, setMessage] = useState("");
 
+  const backendURL = "https://web-solutions-backend.vercel.app"; // ✅ deployed backend URL
+
   const handleSendOtp = async () => {
     setMessage("");
     if (!email) {
@@ -22,7 +24,7 @@ const SignupPage = () => {
     }
 
     try {
-      const res = await fetch("https://web-solutions-backend.vercel.app/api/sendcode", {
+      const res = await fetch(`${backendURL}/api/sendcode`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email }),
@@ -67,7 +69,7 @@ const SignupPage = () => {
     }
 
     try {
-      const res = await fetch("https://web-solutions-backend.vercel.app/api/signup", {
+      const res = await fetch(`${backendURL}/api/signup`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ username, email, password }),
