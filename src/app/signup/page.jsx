@@ -14,7 +14,6 @@ const SignupPage = () => {
   const [verifiedOtp, setVerifiedOtp] = useState(false);
   const [message, setMessage] = useState("");
 
-
   const handleSendOtp = async () => {
     setMessage("");
     if (!email) {
@@ -23,11 +22,10 @@ const SignupPage = () => {
     }
 
     try {
-      const res = await fetch("https://web-solutions-backend.vercel.app/api/sendcode", {
+      const res = await fetch("http://localhost:5000/api/sendcode", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email: userEmail }),
-        credentials: "include",
+        body: JSON.stringify({ email }),
       });
 
       const data = await res.json();
@@ -41,9 +39,9 @@ const SignupPage = () => {
       }
     } catch (err) {
       setMessage("Server error");
+      console.error(err);
     }
   };
-
 
   const handleVerifyOtp = () => {
     if (otp.length !== 6) {
@@ -53,7 +51,6 @@ const SignupPage = () => {
     setVerifiedOtp(true);
     setMessage("OTP verified! You can now signup");
   };
-
 
   const handleSignup = async (e) => {
     e.preventDefault();
@@ -70,7 +67,7 @@ const SignupPage = () => {
     }
 
     try {
-      const res = await fetch("https://web-solutions-backend.vercel.app/api/signup", {
+      const res = await fetch("http://localhost:5000/api/signup", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ username, email, password }),
@@ -86,21 +83,28 @@ const SignupPage = () => {
       }
     } catch (err) {
       setMessage("Server error");
+      console.error(err);
     }
   };
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-900 px-4">
       <div className="shadow-white shadow bg-gradient-to-br from-gray-600 to-black rounded-2xl p-10 max-w-md w-full">
-        <h2 className="text-3xl font-bold text-center text-white mb-6">Create an Account</h2>
+        <h2 className="text-3xl font-bold text-center text-white mb-6">
+          Create an Account
+        </h2>
 
         {message && (
-          <p className="bg-red-100 text-red-700 p-2 rounded mb-4 text-center">{message}</p>
+          <p className="bg-red-100 text-red-700 p-2 rounded mb-4 text-center">
+            {message}
+          </p>
         )}
 
         <form onSubmit={handleSignup} className="flex flex-col gap-4">
           <div>
-            <label className="block text-white font-medium mb-1">Username</label>
+            <label className="block text-white font-medium mb-1">
+              Username
+            </label>
             <input
               type="text"
               placeholder="Your username"
@@ -157,7 +161,9 @@ const SignupPage = () => {
           )}
 
           <div>
-            <label className="block text-white font-medium mb-1">Password</label>
+            <label className="block text-white font-medium mb-1">
+              Password
+            </label>
             <input
               type="password"
               placeholder="Password"
@@ -169,7 +175,9 @@ const SignupPage = () => {
           </div>
 
           <div>
-            <label className="block text-white font-medium mb-1">Confirm Password</label>
+            <label className="block text-white font-medium mb-1">
+              Confirm Password
+            </label>
             <input
               type="password"
               placeholder="Confirm Password"
@@ -183,7 +191,9 @@ const SignupPage = () => {
           <button
             type="submit"
             className={`${
-              verifiedOtp ? "bg-blue-600 hover:bg-blue-700" : "bg-gray-500 cursor-not-allowed"
+              verifiedOtp
+                ? "bg-blue-600 hover:bg-blue-700"
+                : "bg-gray-500 cursor-not-allowed"
             } text-white py-3 rounded-lg font-semibold transition duration-300`}
             disabled={!verifiedOtp}
           >
@@ -193,7 +203,9 @@ const SignupPage = () => {
 
         <p className="mt-6 text-center text-gray-500 text-sm">
           Already have an account?{" "}
-          <Link href="/login" className="text-blue-500 hover:underline">Log in</Link>
+          <Link href="/login" className="text-blue-500 hover:underline">
+            Log in
+          </Link>
         </p>
       </div>
     </div>

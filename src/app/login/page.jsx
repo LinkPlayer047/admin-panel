@@ -14,11 +14,14 @@ const LoginPage = () => {
     setError("");
 
     try {
-      const res = await fetch("http://localhost:5000/api/login", "https://web-solutions-backend.vercel.app/api/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, password }),
-      });
+      const res = await fetch(
+        "http://localhost:5000/api/login",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email, password }),
+        }
+      );
 
       const data = await res.json();
 
@@ -36,10 +39,14 @@ const LoginPage = () => {
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-900 px-4">
       <div className="shadow-white shadow bg-gradient-to-br from-gray-600 to-black rounded-2xl p-10 max-w-md w-full">
-        <h2 className="text-3xl font-bold text-center text-white mb-6">Log in</h2>
+        <h2 className="text-3xl font-bold text-center text-white mb-6">
+          Log in
+        </h2>
 
         {error && (
-          <p className="bg-red-100 text-red-700 p-2 rounded mb-4 text-center">{error}</p>
+          <p className="bg-red-100 text-red-700 p-2 rounded mb-4 text-center">
+            {error}
+          </p>
         )}
 
         <form onSubmit={handleLogin} className="flex flex-col gap-4">
@@ -56,7 +63,9 @@ const LoginPage = () => {
           </div>
 
           <div>
-            <label className="block text-white font-medium mb-1">Password</label>
+            <label className="block text-white font-medium mb-1">
+              Password
+            </label>
             <input
               type="password"
               placeholder="admin123"
@@ -77,7 +86,9 @@ const LoginPage = () => {
 
         <p className="mt-6 text-center text-gray-500 text-sm">
           &copy; {new Date().getFullYear()} Don't have an account?{" "}
-          <Link href="/signup" className="text-blue-500 hover:underline">Create an account</Link>
+          <Link href="/signup" className="text-blue-500 hover:underline">
+            Create an account
+          </Link>
         </p>
       </div>
     </div>
