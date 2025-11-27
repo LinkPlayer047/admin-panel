@@ -23,7 +23,7 @@ const SignupPage = () => {
     }
 
     try {
-      const res = await fetch("http://localhost:5000/api/sendcode", {
+      const res = await fetch("https://web-solutions-backend.vercel.app/api/sendcode", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email }),
@@ -69,7 +69,7 @@ const SignupPage = () => {
     }
 
     try {
-      const res = await fetch("http://localhost:5000/api/signup", {
+      const res = await fetch("https://web-solutions-backend.vercel.app/api/signup", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ username, email, password }),
