@@ -45,6 +45,7 @@ const Navbar = ({ children }) => {
           >
             ✕
           </button>
+          <span className="text-white font-semibold text-2xl"> Admin panel</span>
         </div>
         <nav className="mt-5 flex flex-col gap-2">
           <Link
