@@ -15,7 +15,7 @@ const LoginPage = () => {
 
     try {
       const res = await fetch(
-        "http://localhost:5000/api/login",
+        "https://web-solutions-backend.vercel.app/api/login",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
