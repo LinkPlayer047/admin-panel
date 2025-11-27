@@ -26,7 +26,8 @@ const SignupPage = () => {
       const res = await fetch("https://web-solutions-backend.vercel.app/api/sendcode", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email }),
+        body: JSON.stringify({ email: userEmail }),
+        credentials: "include",
       });
 
       const data = await res.json();
