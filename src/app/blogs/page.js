@@ -4,7 +4,7 @@ import Navbar from "../../components/Navbar.jsx";
 import BlogModal from "../../components/BlogModal.jsx";
 import ProtectedRoute from "@/components/ProtectedRoutes.jsx";
 
-const API_BASE = "https://backend-plum-rho-jbhmx6o6nc.vercel.app/api/blogs";
+const API_BASE = "https://backend-plum-rho-jbhmx6o6nc.vercel.app/api/upload";
 
 const BlogsPage = () => {
   const [blogs, setBlogs] = useState([]);
