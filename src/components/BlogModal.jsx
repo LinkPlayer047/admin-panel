@@ -128,7 +128,7 @@ const BlogModal = ({ onClose, addBlog, blog }) => {
 
                 const file = e.target.files[0];
                 const formData = new FormData();
-                formData.append("file", file); // FIXED HERE 🔥
+                formData.append("image", file); // FIXED HERE 🔥
 
                 try {
                   setUploading(true);
