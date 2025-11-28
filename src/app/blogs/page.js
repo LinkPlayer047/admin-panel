@@ -66,11 +66,11 @@ const BlogsPage = () => {
     }
   };
 
-  const deleteBlog = async (blog) => {
+  const deleteBlog = async (blogs) => {
     try {
-      const res = await fetch(`${API_BASE}/${blog._id}`, { method: "DELETE" });
+      const res = await fetch(`${API_BASE}/${blogs.id}`, { method: "DELETE" });
       if (!res.ok) throw new Error("Failed to delete blog");
-      setBlogs(blogs.filter((b) => b._id !== blog._id));
+      setBlogs(blogs.filter((b) => b._id !== blogs.id));
       setError("");
     } catch (err) {
       console.error(err);
