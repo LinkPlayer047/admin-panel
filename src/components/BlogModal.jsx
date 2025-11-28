@@ -34,7 +34,10 @@ const BlogModal = ({ onClose, addBlog, blog }) => {
       image,
       author,
       category,
-      tags: tags.split(",").map(tag => tag.trim()).filter(tag => tag !== ""),
+      tags: tags
+        .split(",")
+        .map((tag) => tag.trim())
+        .filter((tag) => tag !== ""),
       featured,
     };
     addBlog(blogData);
@@ -48,7 +51,6 @@ const BlogModal = ({ onClose, addBlog, blog }) => {
           {blog ? "Edit Blog" : "Add New Blog"}
         </h2>
         <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-          
           {/* Title & Subtitle */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <input
@@ -122,28 +124,39 @@ const BlogModal = ({ onClose, addBlog, blog }) => {
               accept="image/*"
               className="border p-2 rounded-lg"
               onChange={async (e) => {
-                if (e.target.files && e.target.files[0]) {
-                  const file = e.target.files[0];
-                  const formData = new FormData();
-                  formData.append("image", file);
+                if (!e.target.files || !e.target.files[0]) return;
 
-                  try {
-                    setUploading(true);
-                    const res = await fetch("https://backend-plum-rho-jbhmx6o6nc.vercel.app/api/upload", {
+                const file = e.target.files[0];
+                const formData = new FormData();
+                formData.append("file", file); // FIXED HERE 🔥
+
+                try {
+                  setUploading(true);
+
+                  const res = await fetch(
+                    "https://backend-plum-rho-jbhmx6o6nc.vercel.app/api/upload",
+                    {
                       method: "POST",
                       body: formData,
-                    });
-                    const data = await res.json();
+                    }
+                  );
+
+                  const data = await res.json();
+
+                  if (data.url) {
                     setImage(data.url);
-                  } catch (err) {
-                    console.error("Image upload failed", err);
-                    alert("Image upload failed. Try again.");
-                  } finally {
-                    setUploading(false);
+                  } else {
+                    alert("Upload failed");
                   }
+                } catch (err) {
+                  console.error("Err:", err);
+                  alert("Upload error");
+                } finally {
+                  setUploading(false);
                 }
               }}
             />
+
             {uploading && <p className="text-gray-500">Uploading image...</p>}
             {image && (
               <img

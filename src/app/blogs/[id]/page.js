@@ -48,15 +48,35 @@ const EditBlog = ({ params }) => {
             <input
               type="file"
               accept="image/*"
-              onChange={(e) => {
+              onChange={async (e) => {
                 const file = e.target.files[0];
-                if (file) {
-                  setPreview(URL.createObjectURL(file));
-                  setBlog({ ...blog, image: URL.createObjectURL(file) });
+                if (!file) return;
+
+                const formData = new FormData();
+                formData.append("file", file); // SAME FIX 🔥
+
+                const res = await fetch(
+                  "https://backend-plum-rho-jbhmx6o6nc.vercel.app/api/upload",
+                  {
+                    method: "POST",
+                    body: formData,
+                  }
+                );
+
+                const data = await res.json();
+                if (data.url) {
+                  setPreview(data.url);
+                  setBlog({ ...blog, image: data.url });
                 }
               }}
             />
-            {preview && <img src={preview} className="mt-2 w-full h-48 object-cover rounded" />}
+
+            {preview && (
+              <img
+                src={preview}
+                className="mt-2 w-full h-48 object-cover rounded"
+              />
+            )}
           </div>
           <button
             type="submit"
