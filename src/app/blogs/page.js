@@ -66,15 +66,18 @@ const BlogsPage = () => {
     }
   };
 
-  const deleteBlog = async (blogs) => {
+  const deleteBlog = async (blog) => {
+    // singular name 'blog'
+    console.log("Trying to delete blog with ID:", blog._id); // debug
     try {
-      const res = await fetch(`${API_BASE}/${blogs.id}`, { method: "DELETE" });
+      const res = await fetch(`${API_BASE}/${blog._id}`, { method: "DELETE" });
       if (!res.ok) throw new Error("Failed to delete blog");
-      setBlogs(blogs.filter((b) => b._id !== blogs.id));
+      setBlogs(blogs.filter((b) => b._id !== blog._id));
+      console.log("Blog deleted successfully!");
       setError("");
     } catch (err) {
       console.error(err);
-      setError("Failed to delete blog.");
+      setError("Failed to delete blog: " + err.message);
     }
   };
 
