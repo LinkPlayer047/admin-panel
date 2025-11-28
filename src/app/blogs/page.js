@@ -67,15 +67,23 @@ const BlogsPage = () => {
   };
 
   const deleteBlog = async (blog) => {
-    // variable name singular better
     try {
-      const res = await fetch(`${API_BASE}/${blog._id}`, { method: "DELETE" }); // use _id
+      const res = await fetch(
+        `https://backend-plum-rho-jbhmx6o6nc.vercel.app/api/blogs/${blog._id}`,
+        {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
       if (!res.ok) {
         const errData = await res.json();
         throw new Error(errData.error || "Failed to delete blog");
       }
-      setBlogs(blogs.filter((b) => b._id !== blog._id)); // filter using _id
-      setError("");
+
+      setBlogs((prev) => prev.filter((b) => b._id !== blog._id));
     } catch (err) {
       console.error(err);
       setError("Failed to delete blog: " + err.message);
