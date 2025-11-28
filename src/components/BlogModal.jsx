@@ -129,7 +129,7 @@ const BlogModal = ({ onClose, addBlog, blog }) => {
 
                   try {
                     setUploading(true);
-                    const res = await fetch("http://localhost:5000/api/upload", {
+                    const res = await fetch("https://backend-plum-rho-jbhmx6o6nc.vercel.app/api/upload", {
                       method: "POST",
                       body: formData,
                     });
