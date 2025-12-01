@@ -91,7 +91,7 @@ const SignupPage = () => {
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-900 px-4">
-      <div className="shadow-white h-[90vh] shadow bg-gradient-to-br from-gray-600 to-black rounded-2xl p-10 max-w-md w-full">
+      <div className="shadow-white h-[90vh] shadow bg-gradient-to-br from-gray-600 to-black rounded-2xl p-10 max-w-md w-full flex flex-col">
         <h2 className="text-3xl font-bold text-center text-white mb-6">
           Create an Account
         </h2>
@@ -102,7 +102,10 @@ const SignupPage = () => {
           </p>
         )}
 
-        <form onSubmit={handleSignup} className="flex flex-col gap-4">
+        <form
+          onSubmit={handleSignup}
+          className="flex flex-col gap-4 overflow-y-auto flex-1"
+        >
           <div>
             <label className="block text-white font-medium mb-1">
               Username
