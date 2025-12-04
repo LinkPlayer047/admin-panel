@@ -170,7 +170,7 @@ const Navbar = ({ children }) => {
         {/* Sidebar Header */}
         <div className="flex items-center justify-between border-b border-gray-700 p-4">
           <span className={`font-bold text-xl transition-all ${collapsed ? "hidden" : "block"}`}>
-            Admin Panel
+            Web Solutions
           </span>
 
           <button
