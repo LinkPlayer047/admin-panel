@@ -5,9 +5,9 @@ export default function BlogCard({ blog, onEdit, onDelete }) {
 
       <div className="p-4">
         <h2 className="font-bold text-lg">{blog.title}</h2>
-        <p className="text-gray-600">{blog.subtitle}</p>
+        <p className="text-gray-800">{blog.subtitle}</p>
 
-        <p className="mt-2 text-gray-700">
+        <p className="mt-2 text-gray-800">
           {blog.content.split(" ").slice(0, 20).join(" ")}...
         </p>
 
