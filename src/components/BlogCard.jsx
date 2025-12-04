@@ -7,8 +7,13 @@ export default function BlogCard({ blog, onEdit, onDelete }) {
         <h2 className="font-bold text-lg">{blog.title}</h2>
         <p className="text-gray-600">{blog.subtitle}</p>
 
-        <p className="mt-2 text-gray-700">
-          {blog.content.split(" ").slice(0, 20).join(" ")}...
+        <p className="mt-2 text-gray-700"
+           style={{
+           display: "-webkit-box",
+           WebkitLineClamp: 2,
+           WebkitBoxOrient: "vertical",
+           overflow: "hidden"}} >
+           {blog.content}
         </p>
 
         <div className="flex justify-between mt-3">
