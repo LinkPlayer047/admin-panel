@@ -1,6 +1,6 @@
 export default function BlogCard({ blog, onEdit, onDelete }) {
   return (
-    <div className="border rounded shadow bg-white hover:shadow-lg transition">
+    <div className="border rounded shadow bg-white overflow-hidden hover:shadow-lg transition">
       <img src={blog.image} className="h-48 w-full object-cover rounded-t" />
 
       <div className="p-4">
