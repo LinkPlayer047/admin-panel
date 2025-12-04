@@ -12,12 +12,21 @@ export default function BlogCard({ blog, onEdit, onDelete }) {
           {blog.title}
         </h2>
 
-        <p className="text-gray-700 text-sm break-words mb-2 line-clamp-1">
+        <p className="text-gray-700 text-sm break-words mb-2">
           {blog.subtitle}
         </p>
 
-        {/* Content with truncation and ellipsis */}
-        <p className="text-gray-800 text-sm line-clamp-3 break-words overflow-hidden">
+        {/* Content with manual 3-line clamp using inline style */}
+        <p
+          className="text-gray-800 text-sm break-words"
+          style={{
+            overflow: "hidden",
+            display: "-webkit-box",
+            WebkitLineClamp: 3,
+            WebkitBoxOrient: "vertical",
+          }}
+          title={blog.content} // optional: full content on hover tooltip
+        >
           {blog.content}
         </p>
 
